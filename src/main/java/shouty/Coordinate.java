@@ -1,6 +1,7 @@
 package shouty;
 
 public class Coordinate {
+
     private final int x;
     private final int y;
 
@@ -13,6 +14,6 @@ public class Coordinate {
         // TODO: actually calculate distance between the coordinates.
         //       e.g. return Math.abs(x - other.x);
 
-        return 0;
+        return (int) Math.sqrt(((x - other.x) * (x - other.x)) + ((y - other.y) * (y - other.y)));
     }
 }
