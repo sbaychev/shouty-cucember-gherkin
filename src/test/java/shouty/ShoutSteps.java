@@ -45,4 +45,9 @@ public class ShoutSteps {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }
+
+//    @Then("{word} should not hear {word}")
+//    public void lucyShouldNotHearOscar(String shout_consumer,  String shout_producer) {
+//        assertFalse(shouty.getShoutsHeardBy(shout_consumer).containsKey(shout_producer));
+//    }
 }

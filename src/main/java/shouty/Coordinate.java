@@ -14,6 +14,6 @@ public class Coordinate {
         // TODO: actually calculate distance between the coordinates.
         //       e.g. return Math.abs(x - other.x);
 
-        return (int) Math.sqrt(((x - other.x) * (x - other.x)) + ((y - other.y) * (y - other.y)));
+        return (int) Math.hypot(Math.abs(x - other.x), Math.abs(y - other.y));
     }
 }
