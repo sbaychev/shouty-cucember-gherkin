@@ -25,6 +25,11 @@ Feature: Hear Shout
     Then Lucy should hear Sean
 
   Scenario: Multiple shouters
+    Given people are located at
+      | name | x | y |
+      | Lucy | 0 | 0 |
+      | Sean | 0 | 500 |
+      | Oscar | 1100 | 0 |
     Given Lucy is at 0, 0
     And Sean is at 0, 500
     And Oscar is at 1100, 0
@@ -32,6 +37,8 @@ Feature: Hear Shout
     And Oscar shouts
     Then Lucy should not hear Oscar
     But Lucy should hear Sean
+
+
 
   Scenario: Shouters should not hear their own shouts
     When Sean shouts

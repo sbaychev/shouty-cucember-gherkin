@@ -4,6 +4,7 @@ import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import java.util.List;
 
 import static java.util.Collections.emptyMap;
 import static org.junit.Assert.assertEquals;
@@ -36,7 +37,7 @@ public class ShoutSteps {
     }
 
     @Then("{word} should not hear {word}")
-    public void lucyShouldNotHearOscar(String shout_consumer,  String shout_producer) {
+    public void lucyShouldNotHearOscar(String shout_consumer, String shout_producer) {
         assertFalse(shouty.getShoutsHeardBy(shout_consumer).containsKey(shout_producer));
     }
 
@@ -46,8 +47,57 @@ public class ShoutSteps {
         throw new PendingException();
     }
 
+    @Given("people are located at")
+    public void peopleAreLocatedAt(List<PersonLocation> dataTable) {
+
+        dataTable.forEach(
+                row -> lucy_is_at(row.getName(),
+                        row.getxCoord(),
+                        row.getyCoord()));
+    }
+
 //    @Then("{word} should not hear {word}")
 //    public void lucyShouldNotHearOscar(String shout_consumer,  String shout_producer) {
 //        assertFalse(shouty.getShoutsHeardBy(shout_consumer).containsKey(shout_producer));
 //    }
+
+    static class PersonLocation {
+
+        String name;
+        int xCoord;
+        int yCoord;
+
+        public PersonLocation(String name, int xCoord, int yCoord) {
+            this.name = name;
+            this.xCoord = xCoord;
+            this.yCoord = yCoord;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public PersonLocation setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public int getxCoord() {
+            return xCoord;
+        }
+
+        public PersonLocation setxCoord(int xCoord) {
+            this.xCoord = xCoord;
+            return this;
+        }
+
+        public int getyCoord() {
+            return yCoord;
+        }
+
+        public PersonLocation setyCoord(int yCoord) {
+            this.yCoord = yCoord;
+            return this;
+        }
+    }
 }
