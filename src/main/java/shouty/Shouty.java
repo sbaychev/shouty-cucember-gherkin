@@ -10,7 +10,7 @@ public class Shouty {
     private static final int MESSAGE_RANGE = 1000;
 
     private Map<String, Coordinate> locations = new HashMap<>();
-    private Map<String, List<String> > shouts = new HashMap<>();
+    private Map<String, List<String>> shouts = new HashMap<>();
 
     public void setLocation(String person, Coordinate location) {
         locations.put(person, location);
@@ -27,15 +27,20 @@ public class Shouty {
 
     public Map<String, List<String>> getShoutsHeardBy(String listener) {
 
-        HashMap<String, List<String> > shoutsHeard = new HashMap<>();
+        HashMap<String, List<String>> shoutsHeard = new HashMap<>();
 
-        for (Map.Entry<String, List<String> > entry : shouts.entrySet()) {
+        for (Map.Entry<String, List<String>> entry : shouts.entrySet()) {
             String shouter = entry.getKey();
+
+            if (listener.equals(shouter)) {
+                continue;
+            }
+
             List<String> personsShouts = entry.getValue();
 
             int distance = locations.get(listener).distanceFrom(locations.get(shouter));
 
-            if (distance < MESSAGE_RANGE && !listener.equals(shouter)) {
+            if (distance < MESSAGE_RANGE) {
                 shoutsHeard.put(shouter, personsShouts);
             }
         }
